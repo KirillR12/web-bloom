@@ -36,8 +36,8 @@ useEffect(() => {
     if (secondsCreate === 0) {
       const newObj = {
         id: Date.now(),
-        x: `${Math.floor(Math.random() * (530 - 0 + 1) + 1)}px`,
-        y: `${Math.floor(Math.random() * (500 - 0 + 1) + 1)}px`
+        x: `${Math.floor(Math.random() * (400 - 0 + 1) + 1)}px`,
+        y: `${Math.floor(Math.random() * (400 - 0 + 1) + 1)}px`
       }
       setArrObj(prev => [...prev, newObj])
   console.log(arrObj)
@@ -76,7 +76,7 @@ useEffect(() => {
       <button onClick={bonusFive}>Купить бонус 5</button>
       <button onClick={bonus15}>Купить бонус 15</button>
 {arrObj?.map((el) => (
-  <button onClick={() => clickBtn(el.id)} className='block' style={{left: el.x, top: el.y}}>gor</button>
+  <button onClick={() => clickBtn(el.id)} className='block' style={{left: el.x, top: el.y}}></button>
 ))}
     </div>
   );
