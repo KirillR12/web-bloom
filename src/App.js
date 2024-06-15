@@ -52,7 +52,8 @@ useEffect(() => {
       }
       }, [arrObj, secondsDelete])
 
-    const clickBtn = useCallback((id) => {
+    const clickBtn = useCallback((event, id) => {
+      event.preventDefault()
       setState(prev => prev + bonus)
       setArrObj(prev => prev.filter((el) => el.id !== id))
     }, [bonus])
@@ -76,7 +77,7 @@ useEffect(() => {
       <button onClick={bonusFive}>Купить бонус 5</button>
       <button onClick={bonus15}>Купить бонус 15</button>
 {arrObj?.map((el) => (
-  <button onClick={() => clickBtn(el.id)} className='block' style={{left: el.x, top: el.y}}></button>
+  <button onClick={(e) => clickBtn(e, el.id)} className='block' style={{left: el.x, top: el.y}}></button>
 ))}
     </div>
   );
