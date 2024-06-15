@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useId, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import './App.css';
 
 function App() {
@@ -12,13 +12,16 @@ const [bonus, setBonus] = useState(1)
 const [ secondsCreate, setSecondsCreate ] = useState(null);
 const [ secondsDelete, setSecondsDelete] = useState(null);
 
+
 useEffect(() => {
-    if (secondsCreate > 0) {
-      setTimeout(setSecondsCreate, 10, secondsCreate - 1);
+  if (secondsCreate > 0) {
+    setTimeout(setSecondsCreate, 1, secondsCreate - 1);
     } else {
       setSecondsCreate(60)
-    }
-  }, [ secondsCreate ]);
+      }
+      }, [ secondsCreate ]);
+
+    // console.log(secondsCreate)
 
   useEffect(() => {
     if (secondsDelete > 0) {
@@ -33,25 +36,26 @@ useEffect(() => {
     if (secondsCreate === 0) {
       const newObj = {
         id: Date.now(),
-        x: `${Math.floor(Math.random() * (500 - 0 + 1) + 1)}px`,
+        x: `${Math.floor(Math.random() * (530 - 0 + 1) + 1)}px`,
         y: `${Math.floor(Math.random() * (500 - 0 + 1) + 1)}px`
       }
       setArrObj(prev => [...prev, newObj])
-      console.log({create: arrObj})
+  console.log(arrObj)
     }
     }, [arrObj, secondsCreate])
 
     useEffect(() => {
       if (secondsDelete === 0) {
-        setArrObj(prev => [...prev])
-        console.log({delete: arrObj})
+        if (arrObj.length > 150) {
+          setArrObj([])
+        }
       }
-      }, [secondsDelete])
+      }, [arrObj, secondsDelete])
 
     const clickBtn = useCallback((id) => {
       setState(prev => prev + bonus)
       setArrObj(prev => prev.filter((el) => el.id !== id))
-    }, [state])
+    }, [bonus])
 
     const bonusTwo = useCallback(() => {
       setBonus(2)
